@@ -1,0 +1,37 @@
+---
+# tasks file for ansible-role-jenkins-slave
+
+- include_vars: "{{ ansible_os_family }}.yml"
+
+- include: "install-{{ ansible_os_family }}.yml"
+
+- name: Create log directory
+  file:
+    path: "{{ jenkins-slave_log_dir }}"
+    mode: 0755
+    owner: "{{ jenkins-slave_user }}"
+    group: "{{ jenkins-slave_group }}"
+    state: directory
+  notify: Restart jenkins-slave
+
+- name: Create db directory
+  file:
+    path: "{{ jenkins-slave_db_dir }}"
+    mode: 0755
+    owner: "{{ jenkins-slave_user }}"
+    group: "{{ jenkins-slave_group }}"
+    state: directory
+  notify: Restart jenkins-slave
+
+- name: Create jenkins-slave.conf
+  template:
+    src: jenkins-slave.conf.j2
+    dest: "{{ jenkins-slave_conf_file }}"
+    validate: echo %s
+  notify: Restart jenkins-slave
+
+- name: Start jenkins-slave
+  service:
+    name: "{{ jenkins-slave_service }}"
+    enabled: true
+    state: started

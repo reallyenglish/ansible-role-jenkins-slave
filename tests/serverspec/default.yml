@@ -1,0 +1,5 @@
+- hosts: localhost
+  roles:
+    - ansible-role-jenkins-slave
+  vars:
+    jenkins-slave_config: ""

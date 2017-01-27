@@ -1,0 +1,8 @@
+jenkins-slave_user: jenkins-slave
+jenkins-slave_group: jenkins-slave
+jenkins-slave_log_dir: /var/log/jenkins-slave
+jenkins-slave_db_dir: "{{ __jenkins-slave_db_dir }}"
+jenkins-slave_service: jenkins-slave
+jenkins-slave_conf_dir: "{{ __jenkins-slave_conf_dir }}"
+jenkins-slave_conf_file: "{{ __jenkins-slave_conf_dir }}/jenkins-slave.conf"
+jenkins-slave_flags: ""

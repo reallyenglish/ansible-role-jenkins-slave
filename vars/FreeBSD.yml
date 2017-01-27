@@ -1,0 +1,2 @@
+__jenkins-slave_db_dir: /var/db/jenkins-slave
+__jenkins-slave_conf_dir: /usr/local/etc/jenkins-slave
