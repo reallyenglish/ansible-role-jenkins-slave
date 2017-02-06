@@ -1,6 +1,6 @@
 ---
 
-- name: Install jenkins-slave
+- name: Install jenkins
   pkgng:
-    name: jenkins-slave
+    name: jenkins
     state: present

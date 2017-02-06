@@ -1,5 +1,5 @@
 __jenkins_slave_user: jenkins
 __jenkins_slave_group: jenkins
 __jenkins_slave_service: jenkins
-__jenkins_slave_home: /usr/local/jenkins
+__jenkins_slave_home: /var/lib/jenkins
 __jenkins_slave_package: jenkins

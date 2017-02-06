@@ -5,33 +5,29 @@
 
 - include: "install-{{ ansible_os_family }}.yml"
 
-- name: Create log directory
-  file:
-    path: "{{ jenkins-slave_log_dir }}"
-    mode: 0755
-    owner: "{{ jenkins-slave_user }}"
-    group: "{{ jenkins-slave_group }}"
-    state: directory
-  notify: Restart jenkins-slave
+- include_vars: sample_secret.yml
 
-- name: Create db directory
+- name: Creates .ssh
   file:
-    path: "{{ jenkins-slave_db_dir }}"
-    mode: 0755
-    owner: "{{ jenkins-slave_user }}"
-    group: "{{ jenkins-slave_group }}"
+    path: "{{ jenkins_slave_home }}/.ssh"
     state: directory
-  notify: Restart jenkins-slave
+    mode: 0700
+    owner: "{{ jenkins_slave_user }}"
+    group: "{{ jenkins_slave_group }}"
 
-- name: Create jenkins-slave.conf
+- name: Creates .ssh/authorized_keys
   template:
-    src: jenkins-slave.conf.j2
-    dest: "{{ jenkins-slave_conf_file }}"
-    validate: echo %s
-  notify: Restart jenkins-slave
+    src: authorized_keys.j2
+    dest: "{{ jenkins_slave_home }}/.ssh/authorized_keys"
+    mode: 0600
+    owner: "{{ jenkins_slave_user }}"
+    group: "{{ jenkins_slave_group }}"
+    validate: ssh-keygen -l -f %s
 
-- name: Start jenkins-slave
-  service:
-    name: "{{ jenkins-slave_service }}"
-    enabled: true
-    state: started
+- name: Creates .ansible_vault_key
+  template:
+    src: ansible_vault_key.j2
+    dest: "{{ jenkins_slave_home }}/.ansible_vault_key"
+    mode: 0600
+    owner: "{{ jenkins_slave_user }}"
+    group: "{{ jenkins_slave_group }}"
