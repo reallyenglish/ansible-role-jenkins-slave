@@ -1,6 +1,0 @@
----
-
-- name: Restart jenkins-slave
-  service:
-    name: jenkins-slave
-    state: restarted

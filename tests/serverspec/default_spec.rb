@@ -15,11 +15,6 @@ describe package(package) do
   it { should be_installed }
 end 
 
-describe service(service) do
-  it { should_not be_running }
-  it { should_not be_enabled }
-end
-
 describe user(user) do
   it { should exist }
 end
