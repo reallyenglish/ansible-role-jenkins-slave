@@ -8,12 +8,12 @@ home    = '/var/lib/jenkins'
 
 case os[:family]
 when 'freebsd'
-  home= '/usr/local/jenkins'
+  home = '/usr/local/jenkins'
 end
 
 describe package(package) do
   it { should be_installed }
-end 
+end
 
 describe user(user) do
   it { should exist }
