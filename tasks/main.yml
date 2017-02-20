@@ -7,7 +7,7 @@
 
 - include_vars: sample_secret.yml
 
-- name: Creates .ssh
+- name: Create .ssh
   file:
     path: "{{ jenkins_slave_home }}/.ssh"
     state: directory
@@ -15,7 +15,7 @@
     owner: "{{ jenkins_slave_user }}"
     group: "{{ jenkins_slave_group }}"
 
-- name: Creates .ssh/authorized_keys
+- name: Create .ssh/authorized_keys
   template:
     src: authorized_keys.j2
     dest: "{{ jenkins_slave_home }}/.ssh/authorized_keys"
@@ -24,7 +24,7 @@
     group: "{{ jenkins_slave_group }}"
     validate: ssh-keygen -l -f %s
 
-- name: Creates .ansible_vault_key
+- name: Create .ansible_vault_key
   template:
     src: ansible_vault_key.j2
     dest: "{{ jenkins_slave_home }}/.ansible_vault_key"
