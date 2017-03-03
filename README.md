@@ -10,15 +10,58 @@ None
 
 | variable | description | default |
 |----------|-------------|---------|
+| `jenkins_slave_user` | Jenkins user | `{{ __jenkins_slave_user }}` |
+| `jenkins_slave_group` | Jenkins group | `{{ __jenkins_slave_group }}` |
+| `jenkins_slave_home` | Jenkins home | `{{ __jenkins_slave_home }}` |
+| `jenkins_slave_package` | package name | `{{ __jenkins_slave_package }}` |
 
+## Debian
+
+| Variable | Default |
+|----------|---------|
+| `__jenkins_slave_user` | `jenkins` |
+| `__jenkins_slave_group` | `jenkins` |
+| `__jenkins_slave_home` | `/var/lib/jenkins` |
+| `__jenkins_slave_package` | `jenkins` |
+
+## FreeBSD
+
+| Variable | Default |
+|----------|---------|
+| `__jenkins_slave_user` | `jenkins` |
+| `__jenkins_slave_group` | `jenkins` |
+| `__jenkins_slave_home` | `/usr/local/jenkins` |
+| `__jenkins_slave_package` | `jenkins` |
+
+## RedHat
+
+| Variable | Default |
+|----------|---------|
+| `__jenkins_slave_user` | `jenkins` |
+| `__jenkins_slave_group` | `jenkins` |
+| `__jenkins_slave_home` | `/var/lib/jenkins` |
+| `__jenkins_slave_package` | `jenkins` |
 
 # Dependencies
 
-None
+```yaml
+dependencies:
+  - { role: reallyenglish.java }
+  - { role: reallyenglish.vagrant }
+  - { role: reallyenglish.virtualbox }
+  - { role: reallyenglish.ansible }
+```
 
 # Example Playbook
 
 ```yaml
+- hosts: localhost
+  roles:
+    - reallyenglish.java
+    - reallyenglish.vagrant
+    - reallyenglish.virtualbox
+    - reallyenglish.ansible
+    - ansible-role-jenkins-slave
 ```
 
 # License
