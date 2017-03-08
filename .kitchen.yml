@@ -20,6 +20,7 @@ provisioner:
     - extra_modules
     - filter_plugins
     - extra_roles
+    - tests/serverspec/ansible_vault_key.yml
   ansible_vault_password_file: <%= File.expand_path(ENV['ANSIBLE_VAULT_PASSWORD_FILE'] || '') %>
 
 platforms:
