@@ -6,3 +6,6 @@ jenkins_slave_package: "{{ __jenkins_slave_package }}"
 jenkins_slave_java_opts:
   - -Djava.awt.headless=true
   - -Djenkins.install.runSetupWizard=false
+
+jenkins_slave_authorized_keys: ""
+jenkins_slave_ansible_vault_key: ""

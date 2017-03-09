@@ -12,15 +12,18 @@ galaxy_info:
 #  - name: OpenBSD
 #    versions:
 #    - 6.0
-#  - name: Ubuntu
-#    versions:
-#    - trusty
-#  - name: EL
-#    versions:
-#    - 7
+  - name: Ubuntu
+    versions:
+    - trusty
+  - name: EL
+    versions:
+    - 7
 
   galaxy_tags:
     - system
 dependencies:
   - { role: reallyenglish.java }
   - { role: reallyenglish.apt-repo, when: ansible_os_family == 'Debian' }
+  - { role: reallyenglish.vagrant }
+  - { role: reallyenglish.virtualbox }
+  - { role: reallyenglish.ansible }

@@ -5,8 +5,6 @@
 
 - include: "install-{{ ansible_os_family }}.yml"
 
-- include_vars: sample_secret.yml
-
 - name: Create .ssh
   file:
     path: "{{ jenkins_slave_home }}/.ssh"
