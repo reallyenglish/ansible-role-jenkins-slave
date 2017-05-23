@@ -12,3 +12,8 @@
   package:
     name: jenkins
     state: present
+
+- name: Install Rake
+  package:
+    name: rubygem-rake
+    state: present

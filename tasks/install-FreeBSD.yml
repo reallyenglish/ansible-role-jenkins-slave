@@ -4,3 +4,8 @@
   pkgng:
     name: jenkins
     state: present
+
+- name: Install rake
+  pkgng:
+    name: rubygem-rake
+    state: present

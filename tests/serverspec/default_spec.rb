@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'serverspec'
 
-package = 'jenkins'
+packages = %w(jenkins rake)
 user    = 'jenkins'
 group   = 'jenkins'
 home    = '/var/lib/jenkins'
@@ -9,10 +9,15 @@ home    = '/var/lib/jenkins'
 case os[:family]
 when 'freebsd'
   home = '/usr/local/jenkins'
+  packages = %w(jenkins rubygem-rake)
+when 'redhat'
+  packages = %w(jenkins rubygem-rake)
 end
 
-describe package(package) do
-  it { should be_installed }
+packages.each do |package|
+  describe package(package) do
+    it { should be_installed }
+  end
 end
 
 describe user(user) do
