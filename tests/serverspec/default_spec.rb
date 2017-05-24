@@ -1,16 +1,16 @@
-require 'spec_helper'
-require 'serverspec'
+require "spec_helper"
+require "serverspec"
 
 packages = %w(jenkins rake)
-user    = 'jenkins'
-group   = 'jenkins'
-home    = '/var/lib/jenkins'
+user    = "jenkins"
+group   = "jenkins"
+home    = "/var/lib/jenkins"
 
 case os[:family]
-when 'freebsd'
-  home = '/usr/local/jenkins'
+when "freebsd"
+  home = "/usr/local/jenkins"
   packages = %w(jenkins rubygem-rake)
-when 'redhat'
+when "redhat"
   packages = %w(jenkins rubygem-rake)
 end
 
