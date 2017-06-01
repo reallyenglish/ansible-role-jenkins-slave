@@ -63,7 +63,6 @@ dependencies:
   vars_files:
     - ansible_vault_key.yml
   roles:
-    - reallyenglish.apt-repo
     - reallyenglish.redhat-repo
     - reallyenglish.java
     - reallyenglish.vagrant
