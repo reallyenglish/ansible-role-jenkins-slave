@@ -13,7 +13,20 @@
     name: jenkins
     state: present
 
-- name: Install Rake
+- name: Install jenkins_slave_extra_packages
   package:
-    name: rubygem-rake
+    name: "{{ item }}"
     state: present
+  with_items: "{{ jenkins_slave_extra_packages }}"
+
+- name: Install npm
+  package:
+    name: npm
+    state: present
+  when: "{{ jenkins_slave_extra_npm_packages | length > 0 }}"
+
+- name: Install jenkins_slave_extra_npm_packages
+  npm:
+    name: "{{ item }}"
+    global: yes
+  with_items: "{{ jenkins_slave_extra_npm_packages }}"

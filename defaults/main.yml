@@ -2,6 +2,8 @@ jenkins_slave_user: "{{ __jenkins_slave_user }}"
 jenkins_slave_group: "{{ __jenkins_slave_group }}"
 jenkins_slave_home: "{{ __jenkins_slave_home }}"
 jenkins_slave_package: "{{ __jenkins_slave_package }}"
+jenkins_slave_extra_packages: []
+jenkins_slave_extra_npm_packages: []
 
 jenkins_slave_java_opts:
   - -Djava.awt.headless=true
