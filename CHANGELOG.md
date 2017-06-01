@@ -1,3 +1,9 @@
+## Release 1.1.0
+
+* a67f1f1 [feature] introducce variables to install extra packages
+* 880745f remove unnecessary dependency
+* 491a538 [bugfix] install phantomjs (fixes #12)
+
 ## Release 1.0.1
 
 * a8b0bec QA
