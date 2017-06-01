@@ -19,3 +19,5 @@
         mirrorlist: "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-{{ ansible_distribution_major_version }}&arch={{ ansible_architecture }}"
         gpgcheck: yes
         enabled: yes
+    jenkins_slave_extra_packages: "{% if ansible_os_family == 'FreeBSD' %}[ 'rubygem-rake', 'phantomjs' ]{% elif ansible_os_family == 'Debian' %}[ 'rake', 'phantomjs' ]{% elif ansible_os_family == 'RedHat' %}[ 'rubygem-rake' ]{% else %}[]{% endif %}"
+    jenkins_slave_extra_npm_packages: "{% if ansible_os_family == 'RedHat' %}[ 'phantomjs' ]{% else %}[ 'jenkins' ]{% endif %}"

@@ -1,7 +1,8 @@
 require "spec_helper"
 require "serverspec"
 
-packages = %w(jenkins rake phantomjs)
+packages = %w(jenkins rake phantomjs npm)
+npm_packages = %w(jenkins)
 user    = "jenkins"
 group   = "jenkins"
 home    = "/var/lib/jenkins"
@@ -9,9 +10,10 @@ home    = "/var/lib/jenkins"
 case os[:family]
 when "freebsd"
   home = "/usr/local/jenkins"
-  packages = %w(jenkins rubygem-rake phantomjs)
+  packages = %w(jenkins rubygem-rake phantomjs npm)
 when "redhat"
-  packages = %w(jenkins rubygem-rake)
+  packages = %w(jenkins rubygem-rake npm)
+  npm_packages = %w(phantomjs)
 end
 
 packages.each do |package|
@@ -20,10 +22,9 @@ packages.each do |package|
   end
 end
 
-case os[:family]
-when "redhat"
-  describe command("npm list --global phantomjs") do
-    its(:stdout) { should match(/phantomjs/) }
+npm_packages.each do |npm_package|
+  describe command("npm list --global #{npm_package}") do
+    its(:stdout) { should match(/#{npm_package}/) }
     its(:stderr) { should eq "" }
     its(:exit_status) { should eq 0 }
   end
