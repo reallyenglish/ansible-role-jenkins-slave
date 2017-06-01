@@ -19,3 +19,8 @@
   package:
     name: rake
     state: present
+
+- name: Install phantomjs
+  package:
+    name: phantomjs
+    state: present

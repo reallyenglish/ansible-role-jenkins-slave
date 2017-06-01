@@ -17,3 +17,13 @@
   package:
     name: rubygem-rake
     state: present
+
+- name: Install nodejs
+  package:
+    name: nodejs
+    state: present
+
+- name: Install phantomjs
+  npm:
+    name: phantomjs
+    global: yes

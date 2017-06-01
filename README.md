@@ -58,8 +58,13 @@ dependencies:
 # Example Playbook
 
 ```yaml
+
 - hosts: localhost
+  vars_files:
+    - ansible_vault_key.yml
   roles:
+    - reallyenglish.apt-repo
+    - reallyenglish.redhat-repo
     - reallyenglish.java
     - reallyenglish.vagrant
     - reallyenglish.virtualbox
@@ -67,6 +72,15 @@ dependencies:
     - ansible-role-jenkins-slave
   vars:
     jenkins_slave_authorized_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaT5IMLYf5ZxDgCOAVquYXlaPipWj1YNn99ReHwj8o11KHLQkUa1ESEX8hqzvV7LfYA+sDy5ImaQsqpBYuR/zqDjRQ/s7naVIiRhDjaWaX2EcOJSfzZCyl8RaTz2/bhp3ky6YQzePziKWNdsXQcustDNpyvImirtXHULz5AFjSvIyDE4KWaoYnrAH/CWxabrVrQ8vgC8mMgrODL0uplU5VyFPojFfZl5+q9JJLv4thwkfw/aYWjIcKm8VY6IWD7MqsVA5NFCK5yMhN+yPqN3IXXd8ZuYu2yEzQbxSFLoK6StjmsDPyCjwqjT1vJsIevM2Tf2cs/tWeMFt6ew11fgen test@example.com"
+    apt_repo_to_add:
+      - ppa:webupd8team/java
+    redhat_repo_extra_packages:
+      - epel-release
+    redhat_repo:
+      epel:
+        mirrorlist: "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-{{ ansible_distribution_major_version }}&arch={{ ansible_architecture }}"
+        gpgcheck: yes
+        enabled: yes
 ```
 
 # License

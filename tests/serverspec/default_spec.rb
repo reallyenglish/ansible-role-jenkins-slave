@@ -1,7 +1,7 @@
 require "spec_helper"
 require "serverspec"
 
-packages = %w(jenkins rake)
+packages = %w(jenkins rake phantomjs)
 user    = "jenkins"
 group   = "jenkins"
 home    = "/var/lib/jenkins"
@@ -9,7 +9,7 @@ home    = "/var/lib/jenkins"
 case os[:family]
 when "freebsd"
   home = "/usr/local/jenkins"
-  packages = %w(jenkins rubygem-rake)
+  packages = %w(jenkins rubygem-rake phantomjs)
 when "redhat"
   packages = %w(jenkins rubygem-rake)
 end
@@ -17,6 +17,15 @@ end
 packages.each do |package|
   describe package(package) do
     it { should be_installed }
+  end
+end
+
+case os[:family]
+when "redhat"
+  describe command("npm list --global phantomjs") do
+    its(:stdout) { should match(/phantomjs/) }
+    its(:stderr) { should eq "" }
+    its(:exit_status) { should eq 0 }
   end
 end
 

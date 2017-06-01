@@ -7,3 +7,5 @@
 - name: reallyenglish.virtualbox
 
 - name: reallyenglish.ansible
+
+- name: reallyenglish.redhat-repo
