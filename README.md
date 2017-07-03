@@ -93,6 +93,7 @@ dependencies:
     jenkins_slave_extra_packages: "{% if ansible_os_family == 'FreeBSD' %}[ 'rubygem-rake', 'phantomjs' ]{% elif ansible_os_family == 'Debian' %}[ 'rake', 'phantomjs' ]{% elif ansible_os_family == 'RedHat' %}[ 'rubygem-rake' ]{% else %}[]{% endif %}"
     jenkins_slave_extra_npm_packages: "{% if ansible_os_family == 'RedHat' %}[ 'phantomjs' ]{% else %}[ 'jenkins' ]{% endif %}"
     jenkins_slave_master_ssh_passphrase: passphrase
+    jenkins_slave_ansible_vault_key: "QriBECUJGKBq4a1fMTMClAqqqaGuH8DG6jujJllw"
 ```
 
 # License
