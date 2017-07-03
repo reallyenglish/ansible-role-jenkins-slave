@@ -19,6 +19,14 @@ None
 | `jenkins_slave_java_opts` | `JAVA_OPTS` to pass Jenkins | `["-Djava.awt.headless=true", "-Djenkins.install.runSetupWizard=false"]` |
 | `jenkins_slave_authorized_keys` | ssh public key of the jenkins master | `""` |
 | `jenkins_slave_ansible_vault_key` | ansible vault key | `""` |
+| `jenkins_slave_master_ssh_private_key` |ssh private key of the jenkins master | ""
+| `jenkins_slave_master_ssh_passphrase` | ssh passphrase of the jenkins master | ""
+
+### jenkins_slave_authorized_keys
+
+`jenkins_slave_authorized_keys` is overwritten by the one generated from
+`jenkins_slave_master_ssh_private_key` if
+`jenkins_slave_master_ssh_private_key` is not empty.
 
 ## Debian
 
@@ -73,7 +81,6 @@ dependencies:
     - reallyenglish.ansible
     - ansible-role-jenkins-slave
   vars:
-    jenkins_slave_authorized_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaT5IMLYf5ZxDgCOAVquYXlaPipWj1YNn99ReHwj8o11KHLQkUa1ESEX8hqzvV7LfYA+sDy5ImaQsqpBYuR/zqDjRQ/s7naVIiRhDjaWaX2EcOJSfzZCyl8RaTz2/bhp3ky6YQzePziKWNdsXQcustDNpyvImirtXHULz5AFjSvIyDE4KWaoYnrAH/CWxabrVrQ8vgC8mMgrODL0uplU5VyFPojFfZl5+q9JJLv4thwkfw/aYWjIcKm8VY6IWD7MqsVA5NFCK5yMhN+yPqN3IXXd8ZuYu2yEzQbxSFLoK6StjmsDPyCjwqjT1vJsIevM2Tf2cs/tWeMFt6ew11fgen test@example.com"
     apt_repo_to_add:
       - ppa:webupd8team/java
     redhat_repo_extra_packages:
@@ -85,7 +92,7 @@ dependencies:
         enabled: yes
     jenkins_slave_extra_packages: "{% if ansible_os_family == 'FreeBSD' %}[ 'rubygem-rake', 'phantomjs' ]{% elif ansible_os_family == 'Debian' %}[ 'rake', 'phantomjs' ]{% elif ansible_os_family == 'RedHat' %}[ 'rubygem-rake' ]{% else %}[]{% endif %}"
     jenkins_slave_extra_npm_packages: "{% if ansible_os_family == 'RedHat' %}[ 'phantomjs' ]{% else %}[ 'jenkins' ]{% endif %}"
-<Paste>
+    jenkins_slave_master_ssh_passphrase: passphrase
 ```
 
 # License

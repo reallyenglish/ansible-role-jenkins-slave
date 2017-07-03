@@ -13,6 +13,21 @@
     owner: "{{ jenkins_slave_user }}"
     group: "{{ jenkins_slave_group }}"
 
+- name: Register ssh authorized key
+  shell: echo '{{ jenkins_slave_master_ssh_private_key }}' | openssl rsa -pubout -passin pass:{{ jenkins_slave_master_ssh_passphrase }} | ssh-keygen -i -m pkcs8 -f /dev/stdin
+  register: register_jenkins_slave_ssh_authorized_key
+  changed_when: False
+  always_run: yes
+  no_log: False
+  when:
+   - jenkins_slave_master_ssh_private_key | length > 0
+
+- name: Set jenkins_slave_authorized_keys
+  set_fact:
+    jenkins_slave_authorized_keys: "{{ register_jenkins_slave_ssh_authorized_key.stdout }} jenkins_master"
+  when:
+   - jenkins_slave_master_ssh_private_key | length > 0
+
 - name: Create .ssh/authorized_keys
   template:
     src: authorized_keys.j2

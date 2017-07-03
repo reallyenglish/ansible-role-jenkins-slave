@@ -11,3 +11,5 @@ jenkins_slave_java_opts:
 
 jenkins_slave_authorized_keys: ""
 jenkins_slave_ansible_vault_key: ""
+jenkins_slave_master_ssh_private_key: ""
+jenkins_slave_master_ssh_passphrase: ""
