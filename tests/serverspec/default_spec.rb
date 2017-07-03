@@ -84,5 +84,5 @@ describe file("#{home}/.ansible_vault_key") do
   it { should be_mode 600 }
   it { should be_owned_by user }
   it { should be_grouped_into group }
-  its(:content) { should match(/^0123456789abcdefghijklmnopqrstuvwxyz$/) }
+  its(:content) { should match(/^QriBECUJGKBq4a1fMTMClAqqqaGuH8DG6jujJllw$/) }
 end
