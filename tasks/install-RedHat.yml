@@ -30,3 +30,8 @@
     name: "{{ item }}"
     global: yes
   with_items: "{{ jenkins_slave_extra_npm_packages }}"
+
+- name: Install openssl
+  yum:
+    name: openssl
+    state: present
