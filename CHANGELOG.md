@@ -1,3 +1,9 @@
+## Release 1.2.0
+
+* f8dc53f fix README.md
+* 758bdb7 [bugfix] encrypted files should not be used in the public repo
+* 8c1bf4f [feature] generate the authorized_keys from the private key of the master
+
 ## Release 1.1.0
 
 * a67f1f1 [feature] introducce variables to install extra packages
