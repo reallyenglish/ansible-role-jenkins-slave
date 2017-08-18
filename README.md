@@ -70,12 +70,21 @@ dependencies:
 # Example Playbook
 
 ```yaml
-
 - hosts: localhost
   vars_files:
-    - ansible_vault_key.yml
+    - jenkins_slave_master_ssh_private_key.yml
+  pre_tasks:
+    - yum:
+        # XXX workaround bug 13669
+        # https://bugs.centos.org/view.php?id=13669&nbn=1
+        name: https://kojipkgs.fedoraproject.org//packages/http-parser/2.7.1/3.el7/x86_64/http-parser-2.7.1-3.el7.x86_64.rpm
+        state: present
+      when:
+        - "ansible_distribution == 'CentOS'"
+        - "ansible_distribution_version | version_compare('7.4', '<')"
   roles:
     - reallyenglish.redhat-repo
+    - reallyenglish.apt-repo
     - reallyenglish.java
     - reallyenglish.vagrant
     - reallyenglish.virtualbox
