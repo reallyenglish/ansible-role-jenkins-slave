@@ -23,7 +23,7 @@
   package:
     name: npm
     state: present
-  when: "{{ jenkins_slave_extra_npm_packages | length > 0 }}"
+  when: jenkins_slave_extra_npm_packages | length > 0
 
 - name: Install jenkins_slave_extra_npm_packages
   npm:
