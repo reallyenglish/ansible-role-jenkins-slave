@@ -3,6 +3,7 @@
     - jenkins_slave_master_ssh_private_key.yml
   roles:
     - reallyenglish.redhat-repo
+    - reallyenglish.apt-repo
     - reallyenglish.java
     - reallyenglish.vagrant
     - reallyenglish.virtualbox
