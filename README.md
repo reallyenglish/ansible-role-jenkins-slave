@@ -21,6 +21,7 @@ None
 | `jenkins_slave_ansible_vault_key` | ansible vault key | `""` |
 | `jenkins_slave_master_ssh_private_key` |ssh private key of the jenkins master | ""
 | `jenkins_slave_master_ssh_passphrase` | ssh passphrase of the jenkins master | ""
+| `jenkins_slave_enable_debug` | | `no` |
 
 ### jenkins_slave_authorized_keys
 

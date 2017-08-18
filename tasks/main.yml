@@ -18,7 +18,7 @@
   register: register_jenkins_slave_ssh_authorized_key
   changed_when: False
   always_run: yes
-  no_log: False
+  no_log: "{{ jenkins_slave_enable_debug }}"
   when:
    - jenkins_slave_master_ssh_private_key | length > 0
 
