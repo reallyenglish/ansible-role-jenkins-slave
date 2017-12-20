@@ -1,8 +1,8 @@
 require "spec_helper"
 require "serverspec"
 
-packages = %w(jenkins rake phantomjs npm)
-npm_packages = %w(jenkins)
+packages = %w[jenkins rake phantomjs npm]
+npm_packages = %w[jenkins]
 user    = "jenkins"
 group   = "jenkins"
 home    = "/var/lib/jenkins"
@@ -13,7 +13,7 @@ ssh_checksum =
 case os[:family]
 when "freebsd"
   home = "/usr/local/jenkins"
-  packages = %w(jenkins rubygem-rake phantomjs npm)
+  packages = %w[jenkins rubygem-rake phantomjs npm]
 when "ubuntu"
   if Gem::Version.new(os[:release]) <= Gem::Version.new("14.04")
     ssh_checksum =
@@ -21,8 +21,8 @@ when "ubuntu"
   jenkins_master (RSA)"
   end
 when "redhat"
-  packages = %w(jenkins rubygem-rake npm)
-  npm_packages = %w(phantomjs)
+  packages = %w[jenkins rubygem-rake npm]
+  npm_packages = %w[phantomjs]
   if Gem::Version.new(os[:release]) <= Gem::Version.new("7.3.1611")
     ssh_checksum =
       "2048 a0:b5:8a:3b:5f:8c:eb:5c:fc:17:65:6a:c2:64:33:f7\
